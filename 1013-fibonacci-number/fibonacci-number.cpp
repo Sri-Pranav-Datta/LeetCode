@@ -1,18 +1,29 @@
 class Solution {
 public:
     int fib(int n) {
-        int a=0, b=1, c,i;
-        if(n==0){
-            return a;
+        if(n==0){return 0;}
+        else if(n==1){return 1;}
+        int arr[n];
+        arr[0]=0;
+        arr[1]=1;
+        int a=0;
+        int b=1;
+        int c;        
+        if(n==2) return 1;
+        else{
+            for(int i=2;i<n;i=i+3){
+                c=a+b;
+                arr[i]=c;
+                a=b+c;
+                if(i+1<n){
+                    arr[i+1]=a;
+                }
+                if(i+2<n){
+                    b=a+c;
+                    arr[i+2]=b;
+                }
+            }
         }
-        if(n==1){
-            return b;
-        }
-        for(i=2;i<=n;i++){
-            c=a+b;
-            a=b;
-            b=c;
-        }
-        return b;
+        return arr[n-1]+arr[n-2];
     }
 };
