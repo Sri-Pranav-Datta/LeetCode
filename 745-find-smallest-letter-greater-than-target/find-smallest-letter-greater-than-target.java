@@ -22,4 +22,14 @@ class Solution {
         }
         return ans;
     }
+    public char binarySearch(char[] letters, char target, int l, int r){
+        if(l>r){
+            return letters[l];
+        }
+        int mid = l+ (r-l)/2;
+        if(letters[mid]>target){
+            return binarySearch(letters,target,l,mid-1);
+        }
+        return binarySearch(letters,target,mid+1,r);
+    }
 }
