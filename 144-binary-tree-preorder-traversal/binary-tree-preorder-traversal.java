@@ -13,18 +13,19 @@
  *     }
  * }
  */
+ //iterative approach
 class Solution {
-    void preorder(TreeNode root, List<Integer> arr) {
-        if(root == null) {
-            return;
-        }
-        arr.add(root.val);
-        preorder(root.left, arr);
-        preorder(root.right, arr);
-    }
     public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
-        preorder(root, res);
+        Stack<TreeNode> st = new Stack<TreeNode>();
+        List<Integer> res = new ArrayList<Integer>();
+        if(root == null) return res;
+        st.push(root);
+        while(!st.isEmpty()) {
+            root =st.pop();
+            if(root.right != null) st.push(root.right);
+            if(root.left != null) st.push(root.left);
+            res.add(root.val);
+        }
         return res;
     }
 }
