@@ -4,17 +4,14 @@ class Solution {
         for(int i = 0; i  < numCourses; i++) {
             graph.add(new ArrayList<Integer>());
         }
+        int[] indegree = new int[numCourses];
         for(int i = 0; i < prerequisites.length; i++) {
             graph.get(prerequisites[i][1]).add(prerequisites[i][0]);
+            indegree[prerequisites[i][0]]++;
         }
         // BFS toposort or Kahn algo
         Queue<Integer> q = new LinkedList<>();
-        int[] indegree = new int[numCourses];
-        for(int i = 0; i < numCourses; i++) {
-            for(int it : graph.get(i)) {
-                indegree[it]++;
-            }
-        }
+        
         for(int i = 0; i < numCourses; i++) {
             if(indegree[i] == 0) q.offer(i);
         }
